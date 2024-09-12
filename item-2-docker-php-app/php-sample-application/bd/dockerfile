@@ -1,0 +1,14 @@
+# Usar la imagen base de MariaDB
+FROM mariadb:latest
+
+# Definir variables de entorno para la configuración de la base de datos
+ENV MYSQL_ROOT_PASSWORD=samplepass
+ENV MYSQL_DATABASE=sample
+ENV MYSQL_USER=sampleuser
+ENV MYSQL_PASSWORD=samplepass
+
+# Copiar el script SQL al directorio de inicialización de MariaDB
+COPY ./sql/db.sql /docker-entrypoint-initdb.d/
+
+# Exponer el puerto por defecto de MariaDB
+EXPOSE 3306
